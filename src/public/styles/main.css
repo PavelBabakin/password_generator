@@ -1,0 +1,96 @@
+body, html {
+  background-color: #EBECF0;
+}
+
+body, input, button {
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: -0.2px;
+  font-size: 16px;
+}
+
+div {
+  color: #BABECC;
+  text-shadow: 1px 1px 1px #FFF;
+}
+
+form {
+  padding: 16px;
+  width: 480px;
+  margin: 0 auto;
+  display: flex;
+}
+form .left-side {
+  margin-right: 20px;
+}
+form .right-side {
+  width: 100%;
+}
+
+.title {
+  padding: 160px 0 0;
+  text-align: center;
+}
+
+button, input {
+  border-radius: 320px;
+  padding: 16px;
+}
+
+button, input, div.plus {
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  background-color: #EBECF0;
+  text-shadow: 1px 1px 0 #FFF;
+}
+
+label {
+  display: block;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+input {
+  margin-right: 8px;
+  box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+}
+input:focus {
+  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+button, div.plus {
+  color: #61677C;
+  font-weight: bold;
+  box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+  display: block;
+  width: 100%;
+}
+button:hover, div.plus:hover {
+  box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+}
+button:active, div.plus:active {
+  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+div.plus {
+  padding: 15px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+div.plus i {
+  position: absolute;
+  top: 34%;
+  left: 36%;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,106 @@
+$ruler: 16px;
+$color-red: grey;
+$color-bg: #EBECF0;
+$color-shadow: #BABECC;
+$color-white: #FFF;
+
+body, html {
+    background-color: $color-bg;
+}
+
+body, input, button {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.2px;
+    font-size: $ruler;
+}
+
+div {
+    color: $color-shadow;
+    text-shadow: 1px 1px 1px $color-white;
+}
+
+
+form {
+    padding: $ruler;
+    width: $ruler*30;
+    margin: 0 auto;
+    display: flex;
+
+    .left-side {
+        margin-right: 20px;
+    }
+
+    .right-side {
+        width: 100%;
+    }
+}
+
+.title {
+    padding: $ruler*10 0 0;
+    text-align: center;
+}
+button, input {
+    border-radius: $ruler*20;
+    padding: $ruler;
+}
+
+button, input, div.plus {
+    border: 0;
+    outline: 0;
+    font-size: $ruler;
+    background-color:$color-bg;
+    text-shadow: 1px 1px 0 $color-white;
+}
+
+label {
+    display: block;
+    margin-bottom: $ruler*1.5;
+    width: 100%;
+}
+
+input {
+    margin-right: calc($ruler / 2);
+    box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    appearance: none;
+    -webkit-appearance: none;
+
+    &:focus {
+        box-shadow:  inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+    }
+}
+
+button, div.plus {
+    color:#61677C;
+    font-weight: bold;
+    box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    font-weight: 600;
+    display: block;
+    width: 100%;
+    
+    &:hover {
+        box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
+    }
+    
+    &:active {
+        box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+    }
+}
+
+div.plus {
+    padding: 15px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: relative;
+
+    i {
+        position: absolute;
+        top:34%;
+        left:36%;
+    }
+}
