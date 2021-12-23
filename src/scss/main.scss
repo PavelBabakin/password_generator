@@ -35,6 +35,10 @@ form {
     }
 }
 
+.label-holder {
+    display: flex;
+}
+
 .title {
     padding: $ruler*10 0 0;
     text-align: center;
@@ -44,7 +48,7 @@ button, input {
     padding: $ruler;
 }
 
-button, input, div.plus {
+button, input, .plus, .minus {
     border: 0;
     outline: 0;
     font-size: $ruler;
@@ -72,7 +76,7 @@ input {
     }
 }
 
-button, div.plus {
+button, .plus, .minus {
     color:#61677C;
     font-weight: bold;
     box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
@@ -90,8 +94,7 @@ button, div.plus {
         box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
     }
 }
-
-div.plus {
+ .plus, .minus {
     padding: 15px;
     border-radius: 50%;
     width: 50px;
@@ -103,4 +106,7 @@ div.plus {
         top:34%;
         left:36%;
     }
+}
+ .minus {
+    margin-left: 20px;
 }

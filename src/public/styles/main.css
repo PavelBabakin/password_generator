@@ -26,6 +26,10 @@ form .right-side {
   width: 100%;
 }
 
+.label-holder {
+  display: flex;
+}
+
 .title {
   padding: 160px 0 0;
   text-align: center;
@@ -36,7 +40,7 @@ button, input {
   padding: 16px;
 }
 
-button, input, div.plus {
+button, input, .plus, .minus {
   border: 0;
   outline: 0;
   font-size: 16px;
@@ -63,7 +67,7 @@ input:focus {
   box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
 }
 
-button, div.plus {
+button, .plus, .minus {
   color: #61677C;
   font-weight: bold;
   box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
@@ -73,24 +77,28 @@ button, div.plus {
   display: block;
   width: 100%;
 }
-button:hover, div.plus:hover {
+button:hover, .plus:hover, .minus:hover {
   box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
 }
-button:active, div.plus:active {
+button:active, .plus:active, .minus:active {
   box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
 }
 
-div.plus {
+.plus, .minus {
   padding: 15px;
   border-radius: 50%;
   width: 50px;
   height: 50px;
   position: relative;
 }
-div.plus i {
+.plus i, .minus i {
   position: absolute;
   top: 34%;
   left: 36%;
+}
+
+.minus {
+  margin-left: 20px;
 }
 
 /*# sourceMappingURL=main.css.map */
