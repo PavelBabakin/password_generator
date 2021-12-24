@@ -43,6 +43,7 @@ form {
     padding: $ruler*10 0 0;
     text-align: center;
 }
+
 button, input {
     border-radius: $ruler*20;
     padding: $ruler;
@@ -94,7 +95,8 @@ button, .plus, .minus {
         box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
     }
 }
- .plus, .minus {
+
+.plus, .minus {
     padding: 15px;
     border-radius: 50%;
     width: 50px;
@@ -107,6 +109,11 @@ button, .plus, .minus {
         left:36%;
     }
 }
- .minus {
+
+.minus {
     margin-left: 20px;
+}
+
+.disabled {
+    pointer-events: none;
 }

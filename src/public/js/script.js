@@ -82,6 +82,8 @@ function addPasswordPart() {
         btn_minus.appendChild(icon);
 
         parent_node.insertBefore(label_holder, button);
+
+        countInputs();
     });
 }
 
@@ -101,5 +103,25 @@ function removePasswordPart() {
         if(e.target.nodeName === 'I') {
             e.target.parentNode.parentNode.remove();
         }
+
+        countInputs();
     });
+}
+
+function countInputs() {
+    const btn = document.querySelector('.plus');
+    const icon = btn.querySelector('i');
+    const inputs = document.querySelectorAll('input[type=password]');
+
+    if(inputs.length === 3) {
+        btn.classList.add('disabled');
+        icon.classList.remove('fa-plus');
+        icon.classList.add('fa-times');
+    } else {
+        if(btn.classList.contains('disabled')) {
+            btn.classList.remove('disabled');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-plus');
+        }
+    } 
 }
