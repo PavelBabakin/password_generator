@@ -10,32 +10,47 @@ function formSubmit() {
         e.preventDefault();
 
         let p_str = '';
+        let input_flag = true;
+        const h1 = document.querySelector('h1');
+        const button = document.querySelector('button[type=submit]');
 
         this.querySelectorAll('input').forEach(input => {
             p_str += input.value;
+            if(input.value === '') {
+                input_flag = false;
+            }
         })
 
-        async function postData(url, data) {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(data)
-            });
+        if(input_flag) {
+            async function postData(url, data) {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
 
-            return await response.json();
+                return await response.json();
+            }
+            
+            if(p_str.length) {
+                postData('http://localhost:3000', {p: p_str})
+                    .then((data) => {
+                        copyToClipboard(data);
+                    });
+            }
+        } else {
+            h1.innerText = 'Fill in all the blank fields or delete it.';
+            button.setAttribute("disabled", true);
+            resetTitleAndSubmitBtn();
         }
-        
-        postData('http://localhost:3000', {p: p_str})
-            .then((data) => {
-                copyToClipboard(data);
-            });
     });
 }
 
 function copyToClipboard(hash) {
     const form = document.querySelector('form');
-    const button = document.querySelector('button[type=submit]');
+    const h1 = document.querySelector('h1');
     const el = document.querySelector('input[type=hidden]');
+    const button = document.querySelector('button[type=submit]');
     el.value = hash;
     el.select();
     
@@ -44,13 +59,15 @@ function copyToClipboard(hash) {
     } else{
         navigator.clipboard.writeText(el.value)
             .then(function(){
-                button.innerText = 'Copied to your clipboard';
+                h1.innerText = 'Copied to your clipboard';
             })
             .catch(function() {
-                button.innerText = 'Something go wrong...';
+                h1.innerText = 'Something go wrong...';
             });
             el.value = '';
             form.reset();
+            button.setAttribute("disabled", true);
+            resetTitleAndSubmitBtn();
     }
 }
 
@@ -124,4 +141,14 @@ function countInputs() {
             icon.classList.add('fa-plus');
         }
     } 
+}
+
+function resetTitleAndSubmitBtn() {
+    const h1 = document.querySelector('h1');
+    const button = document.querySelector('button[type=submit]');
+
+    setTimeout(function() {
+        h1.innerText = 'Get your password';
+        button.removeAttribute("disabled");
+    }, 3000);
 }
