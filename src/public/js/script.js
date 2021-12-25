@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function(){
     formSubmit();
     addPasswordPart();
     removePasswordPart();
+    checkInputMaxValueLength();
 });
 
 
@@ -11,8 +12,6 @@ function formSubmit() {
 
         let p_str = '';
         let input_flag = true;
-        const h1 = document.querySelector('h1');
-        const button = document.querySelector('button[type=submit]');
 
         this.querySelectorAll('input').forEach(input => {
             p_str += input.value;
@@ -39,9 +38,9 @@ function formSubmit() {
                     });
             }
         } else {
-            h1.innerText = 'Fill in all the blank fields or delete it.';
-            button.innerText = 'Temporarily blocked';
-            button.setAttribute("disabled", true);
+            setH1Title('Fill in all the blank fields or delete it');
+            setBtnText('Temporarily blocked');
+            setBtnDisabledAttr();
             resetTitleAndSubmitBtn();
         }
     });
@@ -49,9 +48,7 @@ function formSubmit() {
 
 function copyToClipboard(hash) {
     const form = document.querySelector('form');
-    const h1 = document.querySelector('h1');
     const el = document.querySelector('input[type=hidden]');
-    const button = document.querySelector('button[type=submit]');
     el.value = hash;
     el.select();
     
@@ -60,15 +57,15 @@ function copyToClipboard(hash) {
     } else{
         navigator.clipboard.writeText(el.value)
             .then(function(){
-                h1.innerText = 'Copied to your clipboard';
+                setH1Title('Copied to your clipboard');
             })
             .catch(function() {
-                h1.innerText = 'Something go wrong...';
+                setH1Title('Something go wrong...');
             });
             el.value = '';
             form.reset();
-            button.innerText = 'Temporarily blocked';
-            button.setAttribute("disabled", true);
+            setBtnText('Temporarily blocked');
+            setBtnDisabledAttr();
             resetTitleAndSubmitBtn();
     }
 }
@@ -145,6 +142,24 @@ function countInputs() {
     } 
 }
 
+function setH1Title(h1_title='Get your password') {
+    const h1 = document.querySelector('h1');
+
+    h1.innerText = h1_title;
+}
+
+function setBtnText(btn_title='Get Password') {
+    const button = document.querySelector('button[type=submit]');
+
+    button.innerText = btn_title;
+}
+
+function setBtnDisabledAttr() {
+    const button = document.querySelector('button[type=submit]');
+
+    button.setAttribute("disabled", true);
+}
+
 function resetTitleAndSubmitBtn() {
     const h1 = document.querySelector('h1');
     const button = document.querySelector('button[type=submit]');
@@ -152,6 +167,45 @@ function resetTitleAndSubmitBtn() {
     setTimeout(function() {
         h1.innerText = 'Get your password';
         button.innerText = 'Get password';
-        button.removeAttribute("disabled");
+        if(button.hasAttribute('disabled')) {
+            button.removeAttribute("disabled");
+        }
     }, 3000);
+}
+
+function resetTitleAndSubmitBtn() {
+    const h1 = document.querySelector('h1');
+    const button = document.querySelector('button[type=submit]');
+
+    setTimeout(function() {
+        h1.innerText = 'Get your password';
+        button.innerText = 'Get password';
+        if(button.hasAttribute('disabled')) {
+            button.removeAttribute("disabled");
+        }
+    }, 3000);
+}
+
+function setAndResetInputDisable(target) {
+    target.setAttribute("disabled", true);
+
+    setTimeout(function() {
+        if(target.hasAttribute('disabled')) {
+            target.removeAttribute("disabled");
+        }
+    }, 3000);
+}
+
+function checkInputMaxValueLength() {
+    document.querySelector('form').addEventListener('keyup', function(e) {
+        if(e.target.nodeName === 'INPUT') {
+            if(e.target.value.length >= 21) {
+                setAndResetInputDisable(e.target);
+                setH1Title('Max input value length is 20 characters');
+                setBtnText('Temporarily blocked');
+                e.target.value = e.target.value.slice(0, -1);
+                resetTitleAndSubmitBtn();
+            }
+        }
+    });
 }
