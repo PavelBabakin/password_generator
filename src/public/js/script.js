@@ -40,6 +40,7 @@ function formSubmit() {
             }
         } else {
             h1.innerText = 'Fill in all the blank fields or delete it.';
+            button.innerText = 'Temporarily blocked';
             button.setAttribute("disabled", true);
             resetTitleAndSubmitBtn();
         }
@@ -66,6 +67,7 @@ function copyToClipboard(hash) {
             });
             el.value = '';
             form.reset();
+            button.innerText = 'Temporarily blocked';
             button.setAttribute("disabled", true);
             resetTitleAndSubmitBtn();
     }
@@ -149,6 +151,7 @@ function resetTitleAndSubmitBtn() {
 
     setTimeout(function() {
         h1.innerText = 'Get your password';
+        button.innerText = 'Get password';
         button.removeAttribute("disabled");
     }, 3000);
 }
