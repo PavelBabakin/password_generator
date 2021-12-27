@@ -3,13 +3,14 @@ const router = express.Router()
 const path = require('path')
 const winston = require('../../utils/winstonLogger')
 const passService = require('../../services/passService')
+const middlewares = require('../middlewares/main')
 
 router.route('/')
     .get(async (req, res) => {
         
         res.status(200).sendFile('index.html', {root: path.join(__dirname, '../../views/')})
     })
-    .post(async (req, res) => {
+    .post(middlewares.checkPassword, async (req, res) => {
         try {
             const pass = await passService.createPass(req.body)
     
